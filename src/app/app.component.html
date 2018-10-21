@@ -1,0 +1,23 @@
+<div>
+  <h1 class="mat-display-1">Restaurant Order App</h1>
+  <form class="app">
+    <mat-form-field>
+      <input matInput placeholder="Order" [(ngModel)]="order" name="order">
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="order-button" 
+      (click)="processOrder(order)">Submit</button>
+    <span class="mat-body order-button">Output: {{output}}</span>  
+  </form>
+
+  <table mat-table [dataSource]="orderHistoryDatasource" class="mat-elevation-z8" [ngClass]="{'w-100': showHistoryTable()}">
+
+    <ng-container *ngFor="let col of displayedColumns; let colIndex = index" matColumnDef="{{col}}">
+        <mat-header-cell *matHeaderCellDef>{{col}}</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element[col]}}
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>
